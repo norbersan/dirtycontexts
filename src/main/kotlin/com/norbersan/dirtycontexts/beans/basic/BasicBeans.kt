@@ -14,48 +14,32 @@ abstract class AbstractBean(){
     override fun toString() = "==> bean ${javaClass.simpleName} ($id)"
 
     init {
-        println("==> ${javaClass.simpleName} init in thread ${Thread.currentThread()} ($id)")
+        println("==> ${javaClass.simpleName} ($id) init in thread ${Thread.currentThread()}")
     }
 
     @PostConstruct
     fun setup(){
-        println("==> ${javaClass.simpleName} @Postconstruct in thread ${Thread.currentThread()}")
-        println("==> @PostConstruct method called for bean of type ${javaClass.simpleName} ($id)")
+        println("==> ${javaClass.simpleName} ($id) @Postconstruct in thread ${Thread.currentThread()}")
     }
 
     @PreDestroy
     fun teardown(){
-        println("==> ${javaClass.simpleName} @Predestroy in thread ${Thread.currentThread()}")
-        println("==> @PreDestroy method called for bean of type ${javaClass.simpleName} ($id)")
+        println("==> ${javaClass.simpleName} ($id) @Predestroy in thread ${Thread.currentThread()}")
     }
 }
 
 @Component
-class BeanA() : AbstractBean(){
-    init {
-        println("==> Created bean of type ${javaClass.simpleName}")
-    }
-}
+class BeanA() : AbstractBean()
 
 @Component
-class BeanB() : AbstractBean(){
-    init {
-        println("==> Created bean of type ${javaClass.simpleName}")
-    }
-}
+class BeanB() : AbstractBean()
 
 @Component
-class BeanC() : AbstractBean(){
-    init {
-        println("==> Created bean of type ${javaClass.simpleName}")
-    }
-}
+class BeanC() : AbstractBean()
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-class BeanContainer(){
-    val id = UUID.randomUUID()
-
+class BeanContainer() : AbstractBean() {
     @Autowired
     lateinit var beanA: BeanA
 
@@ -64,18 +48,4 @@ class BeanContainer(){
 
     @Autowired
     lateinit var beanC: BeanC
-
-    init {
-        println("==> Created bean of type ${javaClass.simpleName}  ($id)")
-    }
-
-    @PostConstruct
-    fun setup(){
-        println("==> @PostConstruct method called for bean of type ${javaClass.simpleName} ($id)")
-    }
-
-    @PreDestroy
-    fun teardown(){
-        println("==> @PreDestroy method called for bean of type ${javaClass.simpleName} ($id)")
-    }
 }

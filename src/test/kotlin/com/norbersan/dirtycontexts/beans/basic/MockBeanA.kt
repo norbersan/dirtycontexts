@@ -36,9 +36,10 @@ class MockBeanA {
         println("----------------------------")
         println("==> MOCKING BeanA")
         println("==> running in thread ${Thread.currentThread()}")
-        println("==> " + beanContainer.beanA.toString())
-        println("==> " + beanContainer.beanB.toString())
-        println("==> " + beanContainer.beanC.toString())
+        println("==> $beanContainer")
+        println("==> ${beanContainer.beanA}")
+        println("==> ${beanContainer.beanB}")
+        println("==> ${beanContainer.beanC}")
         println("----------------------------")
 
         //ctx.beanFactory.destroyBean(beanContainer.beanB)
