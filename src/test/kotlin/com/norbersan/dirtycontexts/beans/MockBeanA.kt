@@ -1,4 +1,4 @@
-package com.norbersan.dirtycontexts.beans.basic
+package com.norbersan.dirtycontexts.beans
 
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ConfigurableApplicationContext
+import com.norbersan.dirtycontexts.beans.shortName
 import org.springframework.context.annotation.Profile
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.ActiveProfiles
@@ -20,21 +21,22 @@ class MockBeanA {
     @Autowired
     lateinit var beanContainer: BeanContainer
 
-//    @MockkBean
-//    lateinit var beanA: BeanA
+    @MockkBean
+    lateinit var beanA: BeanA
 
-//    @Autowired
-//    lateinit var ctx: ConfigurableApplicationContext
+    @Autowired
+    lateinit var ctx: ConfigurableApplicationContext
 
     @Test
     //@DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     //@DirtiesContext(methodMode = DirtiesContext.MethodMode.BEFORE_METHOD)
     fun mockBeanA(){
-//        every { beanA.toString() } answers { "mocked BeanA"}
+        every { beanA.toString() } answers { "mocked BeanA"}
 
         println()
         println("----------------------------")
         println("==> MOCKING BeanA")
+        println("==> using App Context displayname=${shortName(ctx.displayName)}, applicationname=${ctx.applicationName}")
         println("==> running in thread ${Thread.currentThread()}")
         println("==> $beanContainer")
         println("==> ${beanContainer.beanA}")

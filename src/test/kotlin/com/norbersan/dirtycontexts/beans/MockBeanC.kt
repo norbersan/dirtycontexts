@@ -1,14 +1,11 @@
-package com.norbersan.dirtycontexts.beans.basic
+package com.norbersan.dirtycontexts.beans
 
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ConfigurableApplicationContext
-import org.springframework.test.context.ActiveProfiles
 
 @SpringBootTest
 class MockBeanC {
@@ -28,10 +25,12 @@ class MockBeanC {
         println()
         println("----------------------------")
         println("==> MOCKING BeanC")
+        println("==> using App Context displayname=${shortName(ctx.displayName)}, applicationname=${ctx.applicationName}")
         println("==> running in thread ${Thread.currentThread()}")
-        println("==> " + beanContainer.beanA.toString())
-        println("==> " + beanContainer.beanB.toString())
-        println("==> " + beanContainer.beanC.toString())
+        println("==> $beanContainer")
+        println("==> ${beanContainer.beanA}")
+        println("==> ${beanContainer.beanB}")
+        println("==> ${beanContainer.beanC}")
         println("----------------------------")
 
         ctx.beanFactory
