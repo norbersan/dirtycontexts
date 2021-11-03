@@ -21,7 +21,7 @@ class BeanC : AbstractBean()
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
-class BeanContainer() : AbstractBean() {
+class BeanContainer : AbstractBean() {
     @Autowired
     lateinit var beanA: BeanA
 
