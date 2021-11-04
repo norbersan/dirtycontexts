@@ -28,7 +28,7 @@ class MockNoBean {
         println()
         println("----------------------------")
         println("==> NO MOCKING")
-        println("==> using App Context displayname=${shortName(ctx.displayName)}, applicationname=${ctx.applicationName}")
+        println("==> using App Context displayname=${shortName(ctx.displayName)}, in class ${this::class.java.simpleName}")
         println("==> running in thread ${Thread.currentThread()}")
         println("==> $beanContainer")
         println("==> ${beanContainer.beanA}")
